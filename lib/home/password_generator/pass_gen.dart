@@ -14,39 +14,26 @@ class PassGenerator {
     List<String> password = List.empty();
     final Random random = Random();
 
-    if(containsCapitalL) {
-      for(int i = 0; i < length; i++) {
-        String char =
-          Chars.capitalLetters[random.nextInt(Chars.capitalLetters.length)];
-        password.add(char);
-      }
-    }
+    if(containsCapitalL) _generatorLoop(length, password, Chars.capitalLetters);
 
-    if(containslowercaseL) {
-      for(int i = 0; i < length; i++) {
-        String char =
-          Chars.lowercaseLetters[random.nextInt(Chars.lowercaseLetters.length)];
-        password.add(char);
-      }
-    }
+    if(containslowercaseL) _generatorLoop(length, password, Chars.lowercaseLetters);
 
-    if(containsSpecialChars) {
-      for(int i = 0; i < length; i++) {
-        String char =
-          Chars.specialCharacters[random.nextInt(Chars.specialCharacters.length)];
-        password.add(char);
-      }
-    }
+    if(containsSpecialChars) _generatorLoop(length, password, Chars.specialCharacters);
 
-    if(containsNumbers) {
-      for(int i = 0; i < length; i++) {
-        String char = Chars.numbers[random.nextInt(Chars.numbers.length)];
-        password.add(char);
-      }
-    }
+    if(containsNumbers) _generatorLoop(length, password, Chars.numbers);
 
     return password.join('');
   }
 
-  
+  void _generatorLoop(
+    int length,
+    List<String> pass,
+    List<String> chars) {
+    
+    final Random random = Random();
+    for(int i = 0; i < length; i++) {
+      String char = chars[random.nextInt(chars.length)];
+      pass.add(char);
+    }
+  }
 }
